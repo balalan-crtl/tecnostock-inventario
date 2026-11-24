@@ -43,6 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($codigo == '' || $nombre == '' || $id_categoria <= 0) {
         $error = 'Completa todos los campos obligatorios marcados con *.';
+    } elseif (!is_numeric($precio) || !is_numeric($stock_actual) || !is_numeric($stock_minimo)) { // <-- AQUÍ VA is_numeric
+        $error = 'El precio y las cantidades de stock deben ser valores numéricos.';
     } elseif ($precio < 0 || $stock_actual < 0 || $stock_minimo < 0) {
         $error = 'El precio y las cantidades de stock no pueden ser negativos.';
     } elseif ($stmtDup->fetch()) {

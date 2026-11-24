@@ -61,14 +61,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                 <?php endif; ?>
 
-                <form method="POST">
+                <form method="POST" id="formLogin" novalidate>
                     <div class="mb-3">
-                        <label class="form-label small fw-medium text-secondary">Correo corporativo</label>
-                        <input type="email" name="correo" class="form-control" value="admin@tecnostock.cl" required>
+                        <label for="correo" class="form-label small fw-medium text-secondary">Correo corporativo</label>
+                        <input type="email" id="correo" name="correo" class="form-control" value="admin@tecnostock.cl" required>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label small fw-medium text-secondary">Contraseña</label>
-                        <input type="password" name="clave" class="form-control" placeholder="••••••••" required>
+                        <label for="clave" class="form-label small fw-medium text-secondary">Contraseña</label>
+                        <input type="password" id="clave" name="clave" class="form-control" placeholder="••••••••" required>
                     </div>
                     <button type="submit" class="btn btn-slate w-100 py-2">
                         Iniciar sesión <i class="bi bi-arrow-right ms-1"></i>
@@ -82,5 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 </div>
+
+<script src="assets/js/validaciones.js"></script>
 </body>
 </html>

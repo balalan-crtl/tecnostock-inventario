@@ -42,20 +42,19 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute($parametros);
 $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Calcular indicadores KPI sobre los productos listados
-$total_activos       = 0;
+// Calcular indicadores KPI globales (sobre todos los productos activos)
+$activos_kpi = $pdo->query("SELECT precio, stock_actual, stock_minimo FROM productos WHERE estado = 'activo'")->fetchAll(PDO::FETCH_ASSOC);
+
+$total_activos       = count($activos_kpi);
 $total_unidades      = 0;
 $valor_inventario    = 0;
 $cantidad_bajo_stock = 0;
 
-foreach ($productos as $p) {
-    if ($p['estado'] == 'activo') {
-        $total_activos++;
-        $total_unidades   += $p['stock_actual'];
-        $valor_inventario += ($p['precio'] * $p['stock_actual']);
-        if ($p['stock_actual'] < $p['stock_minimo']) {
-            $cantidad_bajo_stock++;
-        }
+foreach ($activos_kpi as $item) {
+    $total_unidades   += $item['stock_actual'];
+    $valor_inventario += ($item['precio'] * $item['stock_actual']);
+    if ($item['stock_actual'] < $item['stock_minimo']) {
+        $cantidad_bajo_stock++;
     }
 }
 

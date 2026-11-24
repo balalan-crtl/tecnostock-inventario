@@ -1,4 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // 0. Validar formulario de login
+    const formLogin = document.getElementById('formLogin');
+    if (formLogin) {
+        formLogin.addEventListener('submit', (e) => {
+            const correo = document.getElementById('correo').value.trim();
+            const clave = document.getElementById('clave').value.trim();
+
+            if (!correo || !clave) {
+                e.preventDefault();
+                alert('Debes ingresar tu correo y contraseña.');
+                return;
+            }
+            if (!correo.includes('@') || !correo.includes('.')) {
+                e.preventDefault();
+                alert('Ingresa un formato de correo electrónico válido.');
+            }
+        });
+    }
+
     // 1. Validar formulario de producto
     const formProducto = document.getElementById('formProducto');
     if (formProducto) {
