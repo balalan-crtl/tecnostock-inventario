@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header('Location: index.php');
             exit;
         } else {
-            $error = 'Correo o contraseña incorrectos.';
+            $error = 'Credenciales incorrectas o cuenta inactiva.';
         }
     }
 }
@@ -37,32 +37,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | TecnoStock</title>
+    <title>Acceso · TecnoStock</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/css/styles.css" rel="stylesheet">
 </head>
-<body class="bg-light d-flex align-items-center min-vh-100">
+<body class="d-flex align-items-center min-vh-100">
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="card shadow-sm">
-                <div class="card-body p-4">
-                    <h4 class="text-center fw-bold mb-3">TecnoStock</h4>
+        <div class="col-sm-9 col-md-6 col-lg-4">
+            <div class="card-clean p-4 p-md-5">
+                <div class="mb-4">
+                    <div class="d-inline-flex align-items-center justify-content-center rounded-2 bg-dark text-white mb-3" style="width: 40px; height: 40px;">
+                        <i class="bi bi-boxes fs-5"></i>
+                    </div>
+                    <h4 class="fw-bold mb-1">TecnoStock</h4>
+                    <p class="text-secondary small mb-0">Sistema de Control de Inventario</p>
+                </div>
 
-                    <?php if ($error != ''): ?>
-                        <div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div>
-                    <?php endif; ?>
+                <?php if ($error != ''): ?>
+                    <div class="alert alert-danger py-2 small">
+                        <i class="bi bi-exclamation-circle me-1"></i><?php echo htmlspecialchars($error); ?>
+                    </div>
+                <?php endif; ?>
 
-                    <form method="POST">
-                        <div class="mb-3">
-                            <label class="form-label">Correo</label>
-                            <input type="email" name="correo" class="form-control" value="admin@tecnostock.cl" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Contraseña</label>
-                            <input type="password" name="clave" class="form-control" placeholder="password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Ingresar</button>
-                    </form>
+                <form method="POST">
+                    <div class="mb-3">
+                        <label class="form-label small fw-medium text-secondary">Correo corporativo</label>
+                        <input type="email" name="correo" class="form-control" value="admin@tecnostock.cl" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label small fw-medium text-secondary">Contraseña</label>
+                        <input type="password" name="clave" class="form-control" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn btn-slate w-100 py-2">
+                        Iniciar sesión <i class="bi bi-arrow-right ms-1"></i>
+                    </button>
+                </form>
+
+                <div class="border-top mt-4 pt-3 text-center">
+                    <span class="text-muted" style="font-size: 0.78rem;">Acceso autorizado · Encargado de Bodega</span>
                 </div>
             </div>
         </div>
